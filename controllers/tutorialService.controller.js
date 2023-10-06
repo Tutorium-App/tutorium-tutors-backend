@@ -12,7 +12,6 @@ exports.createTutorialService = async (req, res, next)=>{
         }
 
         res.json({status: true, success: tutorialService});
-        //todo: in Flutter, if status is true, send email verification which would be followed by congratulations email
     } catch (error) {
         next(error);
     }
@@ -69,7 +68,7 @@ exports.updateTutorialService = async (req, res, next) => {
     }
 };
 
-// Function to delete tutorial service using tutorVideoID(ObjectID)
+// Function to delete tutorial service using tutorServiceID(ObjectID)
 exports.deleteTutorialService = async (req, res, next) => {
     try {
         const { tutorServiceID } = req.params;
@@ -77,7 +76,7 @@ exports.deleteTutorialService = async (req, res, next) => {
         const tutorialService = await TutorialServiceServices.deleteTutorialService(tutorServiceID);
 
         if (!tutorialService) {
-            return res.status(404).json({ status: false, message: 'Failed to delete tutorial video' });
+            return res.status(404).json({ status: false, message: 'Failed to delete tutorial service' });
         }
 
         res.json({ status: true, success: tutorialService });
