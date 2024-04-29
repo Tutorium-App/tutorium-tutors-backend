@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const manageTutorialController = require('../controllers/manageTutorial.controller');
 
+
 // Read tutorial services
 router.get('/readTutorialServices', manageTutorialController.readTutorialServices);
 
@@ -27,8 +28,4 @@ router.post('/updateTutorialService', manageTutorialController.updateTutorialSer
 router.post('/updateTutorialVideo', manageTutorialController.updateTutorialVideo);
 
 
-
 module.exports = router;
-
-
-//* Define the various routes to the server in this file
