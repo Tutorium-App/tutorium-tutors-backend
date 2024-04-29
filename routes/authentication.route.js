@@ -9,6 +9,6 @@ router.post('/storeTutorData', authenticationController.storeTutorData);
 
 //delete account
 router.post('/deleteAccount', authenticationController.deleteAccount);
-
+ 
 module.exports = router;
 

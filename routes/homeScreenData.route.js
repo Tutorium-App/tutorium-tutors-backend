@@ -11,7 +11,7 @@ router.post('/uploadTutorialVideo', homeScreenDataController.uploadTutorialVideo
 
 //upload tutorial service
 router.post('/uploadTutorialService', homeScreenDataController.uploadTutorialService);
-
+ 
 
 module.exports = router;
 
