@@ -36,6 +36,9 @@ const tutorSchema = new Schema({
     rating: {
         type: Number,
     },
+    rank: {
+        type: Number,
+    },
     verified: {
         type: String,
     },

@@ -18,9 +18,15 @@ const tutorialRequestSchema = new Schema({
     description: {
         type: String,
     },
+    budget: {
+        type: String,
+    },
     validUntil: {
+        type: String,
+    },
+    amount: {
         type: Number,
-    }
+    },
 });
 
 const tutorialRequestModel = db.model('TutorialRequest', tutorialRequestSchema);
