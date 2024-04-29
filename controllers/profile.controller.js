@@ -1,4 +1,4 @@
-const ProfileServices = require('../services/payment.services');
+const ProfileServices = require('../services/profile.services');
 const { sendErrorResponse } = require('../utils/errorHandler');
 
 

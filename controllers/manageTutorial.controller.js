@@ -1,4 +1,4 @@
-const ManageTutorialServices = require('../services/homeScreenData.services');
+const ManageTutorialServices = require('../services/manageTutorial.services');
 const { sendErrorResponse } = require('../utils/errorHandler');
 
 // function to get all tutorial services
