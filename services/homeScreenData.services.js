@@ -1,14 +1,41 @@
 const tutorModel = require('../models/tutor.model');
+const newTutorialVideo = require('../models/newTutorialVideo');
+const newTutorialService = require('../models/newTutorialService');
 
 class HomeScreenServices {
-    static async fetchTutorDataById(tutorID) {
+    static async fetchHomeScreenData(tutorID) {
         try {
-            // Find the tutor by tutorID in the database
-            const tutor = await tutorModel.findOne({ tutorID });
-
-            return tutor;
+            const tutorData = await tutorModel.findById(tutorID).exec();
+            return tutorData;
         } catch (error) {
-            throw error; 
+            console.error('Error fetching home screen data:', error);
+            return null;
+        }
+    }
+
+    static async uploadTutorialVideo(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating, sales) {
+        try {
+            const newVideo = new newTutorialVideo({
+                tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating, sales
+            });
+            await newVideo.save();
+            return newVideo;
+        } catch (error) {
+            console.error('Error uploading tutorial video:', error);
+            return null;
+        }
+    }
+
+    static async uploadTutorialService(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, rating, sales) {
+        try {
+            const newService = new newTutorialService({
+                tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, rating, sales
+            });
+            await newService.save();
+            return newService;
+        } catch (error) {
+            console.error('Error uploading tutorial service:', error);
+            return null;
         }
     }
 }

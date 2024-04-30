@@ -2,22 +2,16 @@ const paymentModel = require('../models/payment.model');
 
 
 class PaymentServices {
-    static async fetchPayments(cost, phone) {
+    static async fetchPayments(tutorID) {
         try {
-            // Find the payments by tutorID in the database
-            const payments = await paymentModel.find({ tutorID });
-
+            // Fetch payments where status is 'pending'
+            const payments = await paymentModel.find({
+                tutorID: tutorID,
+            }).exec();
             return payments;
         } catch (error) {
-            throw error; 
-        }
-    }
-
-    static async makeUploadPayment(tutorID) {
-        try {
-            //todo: function to fetch tutor's phone by ID then pass it on to the payment gateway for payment
-        } catch (error) {
-            throw error; 
+            console.error('Error fetching payments:', error);
+            return null;
         }
     }
 }

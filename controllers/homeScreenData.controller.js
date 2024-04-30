@@ -16,7 +16,7 @@ exports.fetchTutorData = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-};
+}; 
 
 // function to upload a tutorial service
 exports.uploadTutorialVideo = async (req, res, next) => {

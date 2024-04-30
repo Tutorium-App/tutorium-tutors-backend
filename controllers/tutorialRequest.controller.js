@@ -18,12 +18,12 @@ exports.readTutorialRequests = async (req, res, next) => {
     }
 };
 
-// Function to accept a tutorial requests
+// Function to accept a tutorial request
 exports.acceptTutorialRequest = async (req, res, next) => {
     try {
-        const { studentID, requestID, amount,  } = req.params;
+        const { studentRequestID, studentID, tutorID, studentName, tutor, role, requestType, description, budget, amount } = req.body; 
 
-        const tutorialRequests = await TutorialRequestServices.acceptTutorialRequest(school);
+        const tutorialRequests = await TutorialRequestServices.acceptTutorialRequest(studentRequestID, studentID, tutorID, studentName, tutor, role, requestType, description, budget, amount);
 
         if (!tutorialRequests) {
             return sendErrorResponse(res, 500, 'Error accepting tutorial requests');
