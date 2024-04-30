@@ -14,10 +14,16 @@ exports.storeTutorData = async (req, res, next)=>{
         }
 
         res.json({status: true, success: tutorData});
+
+        let tutorEmail = await EmailServices.sendTutorRegistrationSuccessEmail(email, fullName);
+
+        if (!tutorEmail) {
+            return sendErrorResponse(res, 500, 'Error sending email');
+        }
         //todo: in Flutter, if status is true, send email verification which would be followed by congratulations email
     } catch (error) {
         next(error);
-    }
+    } 
 }
 
 //function to delete account using tutor id
@@ -37,19 +43,3 @@ exports.deleteAccount = async (req, res, next)=>{
     }
 }
 
-//function to send tutor a congratulations email after account creation
-exports.sendEmail = async (req, res, next)=>{
-    try {
-        const {email} = req.body;
-        
-        let tutorEmail = await EmailServices.sendTutorRegistrationSuccessEmail(email);
-
-        if (!tutorEmail) {
-            return sendErrorResponse(res, 500, 'Error sending email');
-        }
-
-        res.json({status: true, success: tutorEmail});
-    } catch (error) {
-        next(error);
-    }
-};
