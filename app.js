@@ -24,5 +24,3 @@ app.use('/requests/', requestRouter);
 
 module.exports = app;
 
-
-//* Here goes the configuration of your express app

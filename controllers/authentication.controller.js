@@ -41,7 +41,7 @@ exports.storeTutorData = async (req, res, next) => {
     }
 }
 
-//function to delete account using tutor id
+// function to delete account using tutor id
 exports.deleteAccount = async (req, res, next)=>{
     try {
         const {tutorID} = req.body;
