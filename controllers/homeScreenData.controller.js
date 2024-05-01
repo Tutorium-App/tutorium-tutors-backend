@@ -2,7 +2,7 @@ const HomeScreenServices = require('../services/homeScreenData.services');
 const { sendErrorResponse } = require('../utils/errorHandler');
 
 // function to get tutor data using the tutorID
-exports.fetchTutorData = async (req, res, next) => {
+exports.fetchHomeScreenData = async (req, res, next) => {
     try {
         const { tutorID } = req.params;
 
@@ -19,17 +19,17 @@ exports.fetchTutorData = async (req, res, next) => {
 }; 
 
 // function to upload a tutorial service
-exports.uploadTutorialVideo = async (req, res, next) => {
+exports.uploadTutorialService = async (req, res, next) => {
     try {
         const { tutorID, title, category, description, dateCreated, school, cost, thumbnailLInk, rating, sales } = req.params;
 
-        const tutorData = await HomeScreenServices.uploadTutorialVideo(tutorID, title, category, description, dateCreated, school, cost, thumbnailLInk, rating, sales);
+        const tutorService = await HomeScreenServices.uploadTutorialService(tutorID, title, category, description, dateCreated, school, cost, thumbnailLInk, rating, sales);
 
-        if (!tutorData) {
-            return sendErrorResponse(res, 500, 'Failed to upload tutorial video');
+        if (!tutorService) {
+            return sendErrorResponse(res, 500, 'Failed to upload tutorial service');
         }
 
-        res.json({ status: true, success: tutorData });
+        res.json({ status: true, success: tutorService });
     } catch (error) {
         next(error);
     }

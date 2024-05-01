@@ -9,6 +9,9 @@ const tutorialRequestSchema = new Schema({
     studentName: {
         type: String,
     },
+    studentEmail: {
+        type: String,
+    },
     role: {
         type: String,
     },

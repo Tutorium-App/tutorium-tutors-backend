@@ -1,10 +1,10 @@
 const tutorModel = require('../models/tutor.model');
-const paymentModel = require('./models/payment.models'); 
-const pendingTutorialModel = require('./models/pendingTutorials.model');
-const reviewModel = require('./models/reviews.model');
-const tutorialRequestModel = require('./models/tutorialRequest.model');
-const tutorialServiceModel = require('./models/tutorialService.model');
-const tutorialVideoModel = require('./models/tutorialVideo.model');
+const paymentModel = require('../models/payment.model'); 
+const pendingTutorialModel = require('../models/pendingTutorials.model');
+const reviewModel = require('../models/reviews.model');
+const tutorialRequestModel = require('../models/tutorialRequest.model');
+const tutorialServiceModel = require('../models/tutorialService.model');
+const tutorialVideoModel = require('../models/tutorialVideo.model');
 
 const mongoose = require('mongoose');
 

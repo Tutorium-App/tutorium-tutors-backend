@@ -15,7 +15,16 @@ exports.storeTutorData = async (req, res, next)=>{
 
         res.json({status: true, success: tutorData});
 
-        let tutorEmail = await EmailServices.sendTutorRegistrationSuccessEmail(email, fullName);
+        const message = `Dear ${fullName},\n\n
+        Congratulations on joining Tutorium! We're thrilled to have you aboard our community of passionate and dedicated tutors. At Tutorium, we believe in the power of education and the difference it can make in a student's life. As a tutor on our platform, you'll have the opportunity to share your knowledge, connect with fellow students, and earn money while you do it.\n\n
+        We're committed to providing you with all the support you need to succeed. We look forward to seeing the impact you'll make. If you have any questions or need assistance, feel free to reach out to our support team.\n\n
+        Welcome to Tutorium, where learning meets passion and opportunity.\n\n
+        Warm regards,\n
+        The Tutorium Team`;
+
+        const subject = "Congratulations! You're a Tutorium Tutor";
+
+        let tutorEmail = await EmailServices.sendTutorRegistrationSuccessEmail(email, fullName, subject, message);
 
         if (!tutorEmail) {
             return sendErrorResponse(res, 500, 'Error sending email');

@@ -1,6 +1,6 @@
 const tutorModel = require('../models/tutor.model');
-const newTutorialVideo = require('../models/newTutorialVideo');
-const newTutorialService = require('../models/newTutorialService');
+const newTutorialVideo = require('../models/newTutorialVideo.model');
+const newTutorialService = require('../models/newTutorialService.model');
 
 class HomeScreenServices {
     static async fetchHomeScreenData(tutorID) {
