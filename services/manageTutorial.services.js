@@ -1,6 +1,6 @@
-const TutorialService = require('../models/tutorialService');
-const TutorialVideo = require('../models/tutorialVideo');
-const PendingTutorial = require('../models/pendingTutorial');
+const TutorialService = require('../models/tutorialService.model');
+const TutorialVideo = require('../models/tutorialVideo.model');
+const PendingTutorial = require('../models/pendingTutorials.model');
 
 class ManageTutorialServices {
     // Fetch all tutorial services for a specific tutor

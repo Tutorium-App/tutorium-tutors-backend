@@ -35,6 +35,6 @@ const acceptedTutorialRequestSchema = new Schema({
     },
 });
 
-const acceptedTutorialRequestModel = db.model('TutorialRequest', acceptedTutorialRequestSchema);
+const acceptedTutorialRequestModel = db.model('AcceptedTutorialRequest', acceptedTutorialRequestSchema);
 
 module.exports = acceptedTutorialRequestModel;

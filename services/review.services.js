@@ -1,4 +1,4 @@
-const reviewModel = require('../models/review.model');
+const reviewModel = require('../models/reviews.model');
 
 class ReviewServices {
     static async fetchReviews(tutorID) {

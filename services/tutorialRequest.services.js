@@ -1,5 +1,5 @@
 const tutorialRequestModel = require('../models/tutorialRequest.model');
-const acceptedTutorialRequestModel = require('../models/AcceptedTutorialRequest');
+const acceptedTutorialRequestModel = require('../models/acceptedRequests.model');
 
 
 class TutorialRequestServices {
