@@ -29,9 +29,11 @@ class EmailServices {
                 },
             });
 
-            console.log(response.data);
+            console.log('Email sent successfully:', response.data);
+            return true; // Return true indicating success
         } catch (error) {
-            console.error(error);
+            console.error('Failed to send email:', error);
+            return false; // Return false indicating failure
         }
     }
 }

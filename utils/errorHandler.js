@@ -4,3 +4,5 @@ function sendErrorResponse(res, status, message) {
         error: message
     });
 }
+
+module.exports = { sendErrorResponse };
