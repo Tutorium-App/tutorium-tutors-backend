@@ -1,6 +1,7 @@
 const TutorialService = require('../models/tutorialService.model');
 const TutorialVideo = require('../models/tutorialVideo.model');
 const PendingTutorial = require('../models/pendingTutorials.model');
+const EmailServices = require('../services/email.services');
 
 class ManageTutorialServices {
     // Fetch all tutorial services for a specific tutor
@@ -37,9 +38,9 @@ class ManageTutorialServices {
     }
 
     // Delete a specific tutorial service by tutorialID
-    static async deleteTutorialService(tutorialID) {
+    static async deleteTutorialService(_id) {
         try {
-            const result = await TutorialService.findByIdAndDelete(tutorialID);
+            const result = await TutorialService.findByIdAndDelete(_id);
             return result ? result : null;  // Return null if no document was found
         } catch (error) {
             console.error('Error deleting tutorial service:', error);
@@ -62,33 +63,31 @@ class ManageTutorialServices {
     static async cancelPendingTutorial(tutorialID, studentName, studentEmail, tutorialTitle) {
         try {
             const result = await PendingTutorial.findByIdAndDelete(tutorialID);
-
-            // Send student email if tutorial is cancelled
+    
             if (result) {
                 const message = `Dear ${studentName},\n\n
-                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been canceled. We understand the inconvenience this may cause and want to assure you that any fees paid for this service will be fully refunded to your original payment method within the next 5-7 business days.\n\n
+                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any fees paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n\n
                 You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.\n\n
                 Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n\n
                 Warm regards,\n
                 The Tutorium Team`;
 
                 const subject = "Cancellation of Tutorial Service";
-
-                // Assuming sendEmail is a method in your EmailServices class
-                let emailStatus = await EmailServices.sendEmail(studentEmail, subject, message);
-
+                let emailStatus = await EmailServices.sendEmail(studentEmail, studentName, subject, message);
                 if (!emailStatus) {
                     console.error('Error sending cancellation email');
-                    return null; // You might handle this more gracefully depending on your error handling strategy
                 }
+                return result;
+            } else {
+                console.log('No tutorial found with ID:', tutorialID);
+                return null;
             }
-
-            return result ? result : null;  // Return null if no document was found
         } catch (error) {
             console.error('Error canceling pending tutorial:', error);
             return null;
         }
     }
+    
 
 
     // Update a specific tutorial service

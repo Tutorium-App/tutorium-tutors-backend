@@ -1,5 +1,5 @@
 const AuthenticationServices = require('../services/authentication.services');
-const EmailServices = require('../services/email.services')
+const EmailServices = require('../services/email.services');
 const { sendErrorResponse } = require('../utils/errorHandler');
 
 // Function to get tutor authentication data and store it

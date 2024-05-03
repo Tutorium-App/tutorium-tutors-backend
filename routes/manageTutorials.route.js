@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const manageTutorialController = require('../controllers/manageTutorial.controller');
 
-
+ 
 // Read tutorial services
 router.get('/readTutorialServices', manageTutorialController.readTutorialServices);
 
