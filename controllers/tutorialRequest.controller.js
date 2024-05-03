@@ -4,7 +4,7 @@ const { sendErrorResponse } = require('../utils/errorHandler');
 // Function to fetch all tutorial requests by school
 exports.readTutorialRequests = async (req, res, next) => {
     try {
-        const { school } = req.params;
+        const { school } = req.body;
 
         const tutorialRequests = await TutorialRequestServices.readTutorialRequests(school);
 

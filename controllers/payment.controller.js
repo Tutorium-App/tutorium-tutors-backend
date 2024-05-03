@@ -5,7 +5,7 @@ const { sendErrorResponse } = require('../utils/errorHandler');
 // Function to fetch tutors pending payment from the database
 exports.fetchPayments = async (req, res, next) => {
     try {
-        const { tutorID } = req.params;
+        const { tutorID } = req.body;
 
         const payments = await PaymentServices.fetchPayments(tutorID);
 

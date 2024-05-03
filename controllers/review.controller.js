@@ -4,7 +4,7 @@ const { sendErrorResponse } = require('../utils/errorHandler');
 // Function to fetch reviews using tutorID
 exports.fetchReviews = async (req, res, next) => {
     try {
-        const { tutorID } = req.params;
+        const { tutorID } = req.body;
 
         const reviews = await ReviewServices.fetchReviews(tutorID);
 
