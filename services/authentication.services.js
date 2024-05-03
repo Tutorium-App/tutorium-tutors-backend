@@ -6,6 +6,8 @@ const tutorialRequestModel = require('../models/tutorialRequest.model');
 const tutorialServiceModel = require('../models/tutorialService.model');
 const tutorialVideoModel = require('../models/tutorialVideo.model');
 
+const connection = require('../config/db');
+
 const mongoose = require('mongoose');
 
 
@@ -24,10 +26,11 @@ class AuthenticationServices {
 
     //function to delete user account from the database
     static async deleteAccount(tutorID) {
+        let session = null;
         try {
             // Start a session and transaction for atomic operations
             console.log("Starting transaction for deleting account");
-            const session = await mongoose.startSession();
+            session = await connection.startSession();
             session.startTransaction();
             console.log("Transaction started");
 
@@ -48,19 +51,26 @@ class AuthenticationServices {
             console.log("Deleted tutorial video data");
 
             // Commit the transaction
+            console.log("Committing transaction");
             await session.commitTransaction();
-            session.endSession();
-
-            return { success: true, message: 'Account deleted successfully.' };
+            console.log("Transaction committed");
         } catch (error) {
             // If an error occurs, abort the transaction and log the error
-            await session.abortTransaction();
             console.error('Failed to delete tutor and related data:', error);
+            if (session) {
+                console.log("Aborting transaction");
+                await session.abortTransaction();
+            }
             return { success: false, message: 'Failed to delete account. Please try again later.', error: error };
         } finally {
-            session.endSession();
+            if (session) {
+                console.log("Ending session");
+                session.endSession();
+            }
         }
+        return { success: true, message: 'Account deleted successfully.' };
     }
+
 
 }
 
