@@ -17,9 +17,11 @@ class AuthenticationServices {
         var verified = "false";
         var rating = 1;
         var balance = 0;
+        var numberOfServices = 0;
+        var numberOfVideos = 0;
         var about = "";
 
-        const tutorData = new tutorModel({ tutorID, fullName, email, phone, dateCreated, school, program, year, profilePhotoLink, verified, rating, balance, about });
+        const tutorData = new tutorModel({ tutorID, fullName, email, phone, dateCreated, school, program, year, profilePhotoLink, verified, rating, balance, about, numberOfVideos, numberOfServices });
         return await tutorData.save();
     }
 

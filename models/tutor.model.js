@@ -30,6 +30,12 @@ const tutorSchema = new Schema({
     about: {
         type: String,
     },
+    numberOfVideos: {
+        type: Number,
+    },
+    numberOfServices: {
+        type: Number,
+    },
     balance: {
         type: Number,
     },

@@ -2,6 +2,7 @@ const TutorialService = require('../models/tutorialService.model');
 const TutorialVideo = require('../models/tutorialVideo.model');
 const PendingTutorial = require('../models/pendingTutorials.model');
 const EmailServices = require('../services/email.services');
+const tutorModel = require('../models/tutor.model');
 
 class ManageTutorialServices {
     // Fetch all tutorial services for a specific tutor
@@ -40,8 +41,26 @@ class ManageTutorialServices {
     // Delete a specific tutorial service by tutorialID
     static async deleteTutorialService(_id) {
         try {
+            const service = await TutorialService.findById(_id);
+            if (!service) {
+                console.error('No tutorial service found with the given ID');
+                return null;
+            }
+    
             const result = await TutorialService.findByIdAndDelete(_id);
-            return result ? result : null;  // Return null if no document was found
+            if (result) {
+                // Check if tutor exists and update the count safely
+                const tutor = await tutorModel.findOne({ tutorID: result.tutorID });
+                if (tutor && tutor.numberOfServices > 0) {
+                    await tutorModel.findOneAndUpdate(
+                        { tutorID: result.tutorID },
+                        { $inc: { numberOfServices: -1 } },
+                        { new: true }
+                    );
+                }
+            }
+    
+            return result;
         } catch (error) {
             console.error('Error deleting tutorial service:', error);
             return null;
@@ -51,8 +70,26 @@ class ManageTutorialServices {
     // Delete a specific tutorial video by tutorialID
     static async deleteTutorialVideo(tutorialID) {
         try {
+            const video = await TutorialVideo.findById(tutorialID);
+            if (!video) {
+                console.error('No tutorial video found with the given ID');
+                return null;
+            }
+    
             const result = await TutorialVideo.findByIdAndDelete(tutorialID);
-            return result ? result : null;  // Return null if no document was found
+            if (result) {
+                // Check if tutor exists and update the count safely
+                const tutor = await tutorModel.findOne({ tutorID: result.tutorID });
+                if (tutor && tutor.numberOfVideos > 0) {
+                    await tutorModel.findOneAndUpdate(
+                        { tutorID: result.tutorID },
+                        { $inc: { numberOfVideos: -1 } },
+                        { new: true }
+                    );
+                }
+            }
+    
+            return result;
         } catch (error) {
             console.error('Error deleting tutorial video:', error);
             return null;
