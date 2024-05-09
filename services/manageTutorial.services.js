@@ -124,7 +124,7 @@ class ManageTutorialServices {
             return null;
         }
     }
-    
+    //todo: you need to initialize payment to student
 
 
     // Update a specific tutorial service
