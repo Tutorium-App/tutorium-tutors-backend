@@ -1,16 +1,16 @@
-const paymentModel = require('../models/payment.model');
+const pendingTutorialsModel = require('../models/pendingTutorials.model');
 
 
 class PaymentServices {
     static async fetchPayments(tutorID) {
         try {
-            // Fetch payments where status is 'pending'
-            const payments = await paymentModel.find({
+            // Fetch pending tutorials where tutor ID is valid
+            const pendingTutorials = await pendingTutorialsModel.find({
                 tutorID: tutorID,
             }).exec();
-            return payments;
+            return pendingTutorials;
         } catch (error) {
-            console.error('Error fetching payments:', error);
+            console.error('Error fetching pending tutorials:', error);
             return null;
         }
     }
