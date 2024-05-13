@@ -17,6 +17,7 @@ class AuthenticationServices {
         var verified = "false";
         var rating = 1;
         var balance = 0;
+        var sales = 0;
         var numberOfServices = 0;
         var numberOfVideos = 0;
         var about = "";

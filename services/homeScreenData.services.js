@@ -13,10 +13,10 @@ class HomeScreenServices {
         }
     }
  
-    static async uploadTutorialVideo(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink) {
+    static async uploadTutorialVideo(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink) {
         try {
             const newVideo = new newTutorialVideo({
-                tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating: 1, sales: 0
+                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating: 1, sales: 0
             });
             await newVideo.save();
     
@@ -30,7 +30,7 @@ class HomeScreenServices {
             // if (!tutor) {
             //     console.error('Tutor not found for updating video count');
             //     return null;
-            // }
+            // } //todo: this commented code goes to the admin dashboard. It's for when a tutorial service is approved for a tutor
     
             return newVideo;
         } catch (error) {
@@ -39,10 +39,10 @@ class HomeScreenServices {
         }
     }
 
-    static async uploadTutorialService(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink) {
+    static async uploadTutorialService(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink) {
         try {
             const newService = new newTutorialService({
-                tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 1, sales: 0
+                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 1, sales: 0
             });
             await newService.save();
     
@@ -56,7 +56,7 @@ class HomeScreenServices {
             // if (!tutor) {
             //     console.error('Tutor not found for updating service count');
             //     return null;
-            // }
+            // } //todo: this commented code goes to the admin dashboard. It's for when a tutorial service is approved for a tutor
     
             return newService;
         } catch (error) {

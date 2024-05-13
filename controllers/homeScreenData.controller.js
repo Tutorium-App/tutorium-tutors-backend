@@ -21,9 +21,9 @@ exports.fetchHomeScreenData = async (req, res, next) => {
 // function to upload a tutorial service
 exports.uploadTutorialService = async (req, res, next) => {
     try {
-        const { tutorID, title, category, description, dateCreated, school, cost, thumbnailLink} = req.body;
+        const { tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink} = req.body;
 
-        const tutorService = await HomeScreenServices.uploadTutorialService(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink);
+        const tutorService = await HomeScreenServices.uploadTutorialService(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink);
 
         if (!tutorService) {
             return sendErrorResponse(res, 500, 'Failed to upload tutorial service');
@@ -38,9 +38,9 @@ exports.uploadTutorialService = async (req, res, next) => {
 // function to create a tutorial video
 exports.uploadTutorialVideo = async (req, res, next) => {
     try {
-        const { tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink } = req.body;
+        const { tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink } = req.body;
 
-        const tutorData = await HomeScreenServices.uploadTutorialVideo(tutorID, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink);
+        const tutorData = await HomeScreenServices.uploadTutorialVideo(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink);
 
         if (!tutorData) {
             return sendErrorResponse(res, 500, 'Failed to upload tutorial service');

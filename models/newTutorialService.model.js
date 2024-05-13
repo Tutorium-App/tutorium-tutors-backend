@@ -6,6 +6,15 @@ const newTutorialServiceSchema = new Schema({
     tutorID: {
         type: String,
     },
+    tutorName: {
+        type: String,
+    },
+    tutorEmail: {
+        type: String,
+    },
+    tutorNumber: {
+        type: String,
+    },
     title: {
         type: String,
     },
