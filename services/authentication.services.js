@@ -15,14 +15,15 @@ class AuthenticationServices {
     //function to store tutor data into database
     static async storeTutorData(tutorID, fullName, email, phone, dateCreated, school, program, year, profilePhotoLink) {
         var verified = "false";
-        var rating = 1;
+        var rating = 0;
+        var numberOfRatings = 0;
         var balance = 0;
         var sales = 0;
         var numberOfServices = 0;
         var numberOfVideos = 0;
         var about = "";
 
-        const tutorData = new tutorModel({ tutorID, fullName, email, phone, dateCreated, school, program, year, profilePhotoLink, verified, rating, balance, about, numberOfVideos, numberOfServices });
+        const tutorData = new tutorModel({ tutorID, fullName, email, phone, dateCreated, school, program, year, about, numberOfVideos, numberOfServices, balance, rating, numberOfRatings, sales, verified, profilePhotoLink });
         return await tutorData.save();
     }
 

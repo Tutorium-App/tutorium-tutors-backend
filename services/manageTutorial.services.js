@@ -97,13 +97,13 @@ class ManageTutorialServices {
     }
 
     // Cancel a specific pending tutorial by tutorialID
-    static async cancelPendingTutorial(tutorialID, studentName, studentEmail, tutorialTitle) {
+    static async cancelPendingTutorial(tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber) {
         try {
             const result = await PendingTutorial.findByIdAndDelete(tutorialID);
     
             if (result) {
                 const message = `Dear ${studentName},\n\n
-                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any fees paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n\n
+                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n\n
                 You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.\n\n
                 Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n\n
                 Warm regards,\n
@@ -114,11 +114,43 @@ class ManageTutorialServices {
                 if (!emailStatus) {
                     console.error('Error sending cancellation email');
                 }
-                return result;
-            } else {
-                console.log('No tutorial found with ID:', tutorialID);
-                return null;
-            }
+
+                // message to admin
+                const adminMessage = `
+                Dear Tutorium Admin,\n\n
+                A pending tutorial service has been cancelled. Below are the necessary details:\n\n
+                Tutorial Title: ${tutorialTitle}\n
+                Tutorial ID: ${tutorialID}\n
+                Cost: ${cost}\n\n
+                Student Details:\n
+                Name: ${studentName}\n
+                Email: ${studentEmail}\n
+                Number: ${studentNumber}\n
+                Tutor Details:\n
+                Name: ${tutorName}\n
+                Email: ${tutorEmail}\n
+                Number: ${tutorNumber}\n\n
+                Please review this and refund the students amount paid.\n\n
+                Best regards,\n
+                Tutorium Team`;
+
+                const adminSubject = `Tutorial Cancelled By Tutor`;
+                const adminEmail = "buabassahlawson01@gmail.com"; //todo: admin email goes here
+                const adminName = "Tutorium Admin"
+
+                // Attempt to send the email
+                let requestRefundMail = await EmailServices.sendEmail(adminEmail, adminName, adminSubject, adminMessage);
+
+                // Handle email send failure
+                if (!requestRefundMail) {
+                    return sendErrorResponse(res, 500, 'Error sending email');
+                }
+
+                    return result;
+                } else {
+                    console.log('No tutorial found with ID:', tutorialID);
+                    return null;
+                }
         } catch (error) {
             console.error('Error canceling pending tutorial:', error);
             return null;
