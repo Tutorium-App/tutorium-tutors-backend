@@ -102,12 +102,13 @@ class ManageTutorialServices {
             const result = await PendingTutorial.findByIdAndDelete(tutorialID);
     
             if (result) {
-                const message = `Dear ${studentName},\n\n
-                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n\n
-                You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.\n\n
+                const message = `Dear ${studentName},\n
+                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n
+                You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.\n
                 Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n\n
                 Warm regards,\n
-                The Tutorium Team`;
+                The Tutorium Team \n\n
+                [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const subject = "Cancellation of Tutorial Service";
                 let emailStatus = await EmailServices.sendEmail(studentEmail, studentName, subject, message);
@@ -117,7 +118,7 @@ class ManageTutorialServices {
 
                 // message to admin
                 const adminMessage = `
-                Dear Tutorium Admin,\n\n
+                Dear Tutorium Admin,\n
                 A pending tutorial service has been cancelled. Below are the necessary details:\n\n
                 Tutorial Title: ${tutorialTitle}\n
                 Tutorial ID: ${tutorialID}\n
@@ -132,7 +133,8 @@ class ManageTutorialServices {
                 Number: ${tutorNumber}\n\n
                 Please review this and refund the students amount paid.\n\n
                 Best regards,\n
-                Tutorium Team`;
+                The Tutorium Team \n\n
+                [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const adminSubject = `Tutorial Cancelled By Tutor`;
                 const adminEmail = "buabassahlawson01@gmail.com"; //todo: admin email goes here
