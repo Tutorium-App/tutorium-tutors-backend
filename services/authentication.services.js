@@ -21,7 +21,7 @@ class AuthenticationServices {
         var sales = 0;
         var numberOfServices = 0;
         var numberOfVideos = 0;
-        var about = "";
+        var about = "No about inputted yet.";
 
         const tutorData = new tutorModel({ tutorID, fullName, email, phone, dateCreated, school, program, year, about, numberOfVideos, numberOfServices, balance, rating, numberOfRatings, sales, verified, profilePhotoLink });
         return await tutorData.save();
