@@ -4,7 +4,7 @@ const { sendErrorResponse } = require('../utils/errorHandler');
 // function to get tutor data using the tutorID
 exports.fetchHomeScreenData = async (req, res, next) => {
     try {
-        const { tutorID } = req.body;
+        const { tutorID } = req.query;
 
         const tutorData = await HomeScreenServices.fetchHomeScreenData(tutorID);
 

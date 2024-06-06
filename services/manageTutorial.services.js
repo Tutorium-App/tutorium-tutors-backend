@@ -177,11 +177,11 @@ class ManageTutorialServices {
     }
 
     // Update a specific tutorial video
-    static async updateTutorialVideo(tutorialID, tutorID, title, category, description, thumbnailLink) {
+    static async updateTutorialVideo(tutorialID, tutorID, title, category, description, thumbnailLink, videoLink) {
         try {
             const updatedTutorialVideo = await TutorialVideo.findOneAndUpdate(
                 { _id: tutorialID, tutorID: tutorID }, // ensures that only the tutor who owns the video can update it
-                { $set: { title, category, description, thumbnailLink } },
+                { $set: { title, category, description, thumbnailLink, videoLink } },
                 { new: true }  // returns the updated document
             );
             return updatedTutorialVideo ? updatedTutorialVideo : null;

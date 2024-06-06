@@ -4,7 +4,7 @@ const { sendErrorResponse } = require('../utils/errorHandler');
 // function to get all tutorial services
 exports.readTutorialServices = async (req, res, next) => {
     try {
-        const { tutorID } = req.body;
+        const { tutorID } = req.query;
 
         const tutorData = await ManageTutorialServices.readTutorialServices(tutorID);
 
@@ -21,7 +21,7 @@ exports.readTutorialServices = async (req, res, next) => {
 // function to get all tutorial videos
 exports.readTutorialVideos = async (req, res, next) => {
     try {
-        const { tutorID } = req.body;
+        const { tutorID } = req.query;
 
         const tutorData = await ManageTutorialServices.readTutorialVideos(tutorID);
 
@@ -38,7 +38,7 @@ exports.readTutorialVideos = async (req, res, next) => {
 // function to get all pending tutorial services
 exports.readPendingTutorials = async (req, res, next) => {
     try {
-        const { tutorID } = req.body;
+        const { tutorID } = req.query;
 
         const tutorData = await ManageTutorialServices.readPendingTutorials(tutorID);
 
@@ -106,9 +106,9 @@ exports.cancelPendingTutorial = async (req, res, next) => {
 // function to update a tutorial service
 exports.updateTutorialService = async (req, res, next) => {
     try {
-        const { tutorialID, tutorID, title, category, description, thumbnailLInk } = req.body;
+        const { tutorialID, tutorID, title, category, description, thumbnailLink } = req.body;
 
-        const tutorData = await ManageTutorialServices.updateTutorialService(tutorialID, tutorID, title, category, description, thumbnailLInk);
+        const tutorData = await ManageTutorialServices.updateTutorialService(tutorialID, tutorID, title, category, description, thumbnailLink);
 
         if (!tutorData) {
             return sendErrorResponse(res, 500, 'Failed to update tutorial service');
@@ -123,9 +123,9 @@ exports.updateTutorialService = async (req, res, next) => {
 // function to update a tutorial video
 exports.updateTutorialVideo = async (req, res, next) => {
     try {
-        const { tutorialID, tutorID, title, category, description, thumbnailLInk } = req.body;
+        const { tutorialID, tutorID, title, category, description, thumbnailLink, videoLink } = req.body;
 
-        const tutorData = await ManageTutorialServices.updateTutorialVideo(tutorialID, tutorID, title, category, description, thumbnailLInk);
+        const tutorData = await ManageTutorialServices.updateTutorialVideo(tutorialID, tutorID, title, category, description, thumbnailLink, videoLink);
 
         if (!tutorData) {
             return sendErrorResponse(res, 500, 'Failed to update tutorial video');
