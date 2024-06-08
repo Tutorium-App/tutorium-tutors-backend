@@ -1,6 +1,6 @@
 const tutorialRequestModel = require('../models/tutorialRequest.model');
 const acceptedTutorialRequestModel = require('../models/acceptedRequests.model');
-
+const EmailServices = require('../services/email.services');
 
 class TutorialRequestServices {
     // Fetch all tutorial requests by school
@@ -14,7 +14,7 @@ class TutorialRequestServices {
         }
     }
 
-    static async acceptTutorialRequest(studentRequestID, studentID, tutorID, studentName, tutor, role, requestType, description, budget, amount) {
+    static async acceptTutorialRequest(studentRequestID, studentID, tutorID, studentName, studentEmail, tutor, role, requestType, description, budget, amount, validUntil, school) {
         try {
             // Create a new accepted request
             const newAcceptedRequest = new acceptedTutorialRequestModel({
@@ -22,12 +22,15 @@ class TutorialRequestServices {
                 studentID,
                 tutorID,
                 studentName,
+                studentEmail,
                 tutor,
                 role,
                 requestType,
                 description,
                 budget,
-                amount
+                amount,
+                validUntil,
+                school
             });
 
             // Save the accepted request to the database

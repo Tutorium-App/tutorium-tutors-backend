@@ -46,7 +46,7 @@ class ManageTutorialServices {
                 console.error('No tutorial service found with the given ID');
                 return null;
             }
-    
+
             const result = await TutorialService.findByIdAndDelete(_id);
             if (result) {
                 // Check if tutor exists and update the count safely
@@ -59,7 +59,7 @@ class ManageTutorialServices {
                     );
                 }
             }
-    
+
             return result;
         } catch (error) {
             console.error('Error deleting tutorial service:', error);
@@ -75,7 +75,7 @@ class ManageTutorialServices {
                 console.error('No tutorial video found with the given ID');
                 return null;
             }
-    
+
             const result = await TutorialVideo.findByIdAndDelete(tutorialID);
             if (result) {
                 // Check if tutor exists and update the count safely
@@ -88,7 +88,7 @@ class ManageTutorialServices {
                     );
                 }
             }
-    
+
             return result;
         } catch (error) {
             console.error('Error deleting tutorial video:', error);
@@ -97,17 +97,21 @@ class ManageTutorialServices {
     }
 
     // Cancel a specific pending tutorial by tutorialID
-    static async cancelPendingTutorial(tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber) {
+    static async cancelPendingTutorial(tutorID, tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber, amount) {
         try {
             const result = await PendingTutorial.findByIdAndDelete(tutorialID);
-    
+
             if (result) {
+                const tutor = await tutorModel.findOne({ tutorID: tutorID });
+                tutor.balance -= amount;
+                await tutor.save();
+
                 const message = `Dear ${studentName},\n
-                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.\n
-                You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.\n
-                Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n\n
-                Warm regards,\n
-                The Tutorium Team \n\n
+                We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.
+                You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.
+                Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n
+                Warm regards,
+                The Tutorium Team \n
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const subject = "Cancellation of Tutorial Service";
@@ -118,22 +122,22 @@ class ManageTutorialServices {
 
                 // message to admin
                 const adminMessage = `
-                Dear Tutorium Admin,\n
-                A pending tutorial service has been cancelled. Below are the necessary details:\n\n
-                Tutorial Title: ${tutorialTitle}\n
-                Tutorial ID: ${tutorialID}\n
-                Cost: ${cost}\n\n
-                Student Details:\n
-                Name: ${studentName}\n
-                Email: ${studentEmail}\n
-                Number: ${studentNumber}\n
-                Tutor Details:\n
-                Name: ${tutorName}\n
-                Email: ${tutorEmail}\n
-                Number: ${tutorNumber}\n\n
-                Please review this and refund the students amount paid.\n\n
-                Best regards,\n
-                The Tutorium Team \n\n
+                Dear Tutorium Admin,
+                A pending tutorial service has been cancelled. Below are the necessary details:\n
+                Tutorial Title: ${tutorialTitle}
+                Tutorial ID: ${tutorialID}
+                Cost: ${amount}
+                Student Details:
+                Name: ${studentName}
+                Email: ${studentEmail}
+                Number: ${studentNumber}
+                Tutor Details:
+                Name: ${tutorName}
+                Email: ${tutorEmail}
+                Number: ${tutorNumber}\n
+                Please review this and refund the students amount paid.\n
+                Best regards,
+                The Tutorium Team \n
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const adminSubject = `Tutorial Cancelled By Tutor`;
@@ -148,11 +152,11 @@ class ManageTutorialServices {
                     return sendErrorResponse(res, 500, 'Error sending email');
                 }
 
-                    return result;
-                } else {
-                    console.log('No tutorial found with ID:', tutorialID);
-                    return null;
-                }
+                return result;
+            } else {
+                console.log('No tutorial found with ID:', tutorialID);
+                return null;
+            }
         } catch (error) {
             console.error('Error canceling pending tutorial:', error);
             return null;

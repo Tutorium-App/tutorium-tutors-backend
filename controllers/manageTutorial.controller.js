@@ -89,9 +89,9 @@ exports.deleteTutorialVideo = async (req, res, next) => {
 // function to cancel a pending tutorial video
 exports.cancelPendingTutorial = async (req, res, next) => {
     try {
-        const { tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber } = req.body;
+        const { tutorID, tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber, amount } = req.body;
 
-        const tutorData = await ManageTutorialServices.cancelPendingTutorial(tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber);
+        const tutorData = await ManageTutorialServices.cancelPendingTutorial(tutorID, tutorialID, studentName, studentEmail, studentNumber, tutorialTitle, tutorName, tutorEmail, tutorNumber, amount);
 
         if (!tutorData) {
             return sendErrorResponse(res, 500, 'Error canceling tutorial');

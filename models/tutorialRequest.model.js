@@ -12,6 +12,12 @@ const tutorialRequestSchema = new Schema({
     studentEmail: {
         type: String,
     },
+    tutorID: {
+        type: String,
+    },
+    tutor: {
+        type: String,
+    },
     role: {
         type: String,
     },
@@ -30,6 +36,9 @@ const tutorialRequestSchema = new Schema({
     amount: {
         type: Number,
     },
+    school: {
+        type: String,
+    }
 });
 
 const tutorialRequestModel = db.model('TutorialRequest', tutorialRequestSchema);

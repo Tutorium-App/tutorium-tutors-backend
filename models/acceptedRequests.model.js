@@ -3,16 +3,19 @@ const db = require('../config/db');
 const { Schema } = mongoose;
 
 const acceptedTutorialRequestSchema = new Schema({
-    studentRequestID: {
-        type: String,
-    },
     studentID: {
         type: String,
     },
-    tutorID: {
+    studentRequestID: {
         type: String,
     },
     studentName: {
+        type: String,
+    },
+    studentEmail: {
+        type: String,
+    },
+    tutorID: {
         type: String,
     },
     tutor: {
@@ -30,9 +33,15 @@ const acceptedTutorialRequestSchema = new Schema({
     budget: {
         type: String,
     },
+    validUntil: {
+        type: String,
+    },
     amount: {
         type: Number,
     },
+    school: {
+        type: String,
+    }
 });
 
 const acceptedTutorialRequestModel = db.model('AcceptedTutorialRequest', acceptedTutorialRequestSchema);
