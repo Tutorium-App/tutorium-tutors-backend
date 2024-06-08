@@ -39,7 +39,7 @@ class TutorialRequestServices {
             // Send student email if tutorial request is accepted
             if (newAcceptedRequest) {
                 const message = `Dear ${studentName},\n
-                Good news! ${tutor} has just accepted your request and is eager to help you with the role: "${role}"
+                Good news! ${tutor} has just accepted your request and is eager to help you with the role: "${role}".
                 You can review this tutor's profile on our app. This can help you decide whether the tutor fits your educational needs based on their qualifications, teaching style, and previous reviews from other students.
                 Take your time to make an informed decision. Once you are ready, you can confirm your preferred tutor directly through the app.
                 If you have any questions or need further assistance in making your choice, please don't hesitate to reach out. We are here to support you every step of the way.

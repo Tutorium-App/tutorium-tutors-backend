@@ -10,11 +10,13 @@ exports.editProfileDetails = async (req, res, next) => {
         const tutor = await ProfileServices.editProfileDetails(tutorID, fullName, email, phone, program, year, about);
 
         if (!tutor) {
-            return sendErrorResponse(res, 500, 'Error editing tutor details');
+            console.error('Error editing tutor details: Tutor not found or update unsuccessful');
+            return res.status(500).json({ status: false, error: 'Error editing tutor details' });
         }
 
         res.json({ status: true, success: tutor });
     } catch (error) {
-        next(error);
+        console.error('Error editing tutor details:', error);
+        res.status(500).json({ status: false, error: 'Error editing tutor details' });
     }
 };
