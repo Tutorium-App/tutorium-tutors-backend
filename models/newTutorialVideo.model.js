@@ -45,6 +45,9 @@ const newTutorialVideoSchema = new Schema({
     sales: {
         type: Number,
     },
+    tutorialType: {
+        type: String,
+    }
 });
 
 const newTutorialVideoModel = db.model('New_Tutorial_Videos', newTutorialVideoSchema);

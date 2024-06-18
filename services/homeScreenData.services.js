@@ -17,7 +17,7 @@ class HomeScreenServices {
     static async uploadTutorialVideo(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink) {
         try {
             const newVideo = new newTutorialVideo({
-                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating: 0, sales: 0
+                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating: 0, sales: 0, tutorialType: "video"
             });
             await newVideo.save();
     
@@ -73,7 +73,7 @@ class HomeScreenServices {
     static async uploadTutorialService(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink) {
         try {
             const newService = new newTutorialService({
-                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 0, sales: 0
+                tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 0, sales: 0, tutorialType: "service"
             });
             await newService.save();
     
