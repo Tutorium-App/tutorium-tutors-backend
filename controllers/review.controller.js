@@ -13,7 +13,7 @@ exports.fetchReviews = async (req, res, next) => {
             return sendErrorResponse(res, 500, 'Error fetching reviews');
         }
 
-        console.log(reviews);
+        // console.log(reviews);
 
         res.json({ status: true, success: reviews });
     } catch (error) {
