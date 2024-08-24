@@ -21,6 +21,12 @@ const acceptedTutorialRequestSchema = new Schema({
     tutor: {
         type: String,
     },
+    tutorNumber: {
+        type: String,
+    },
+    tutorEmail: {
+        type: String,
+    },
     role: {
         type: String,
     },

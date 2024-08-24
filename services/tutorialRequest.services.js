@@ -14,7 +14,7 @@ class TutorialRequestServices {
         }
     }
 
-    static async acceptTutorialRequest(studentRequestID, studentID, tutorID, studentName, studentEmail, tutorNumber, tutor, role, requestType, description, budget, amount, validUntil, school) {
+    static async acceptTutorialRequest(studentRequestID, studentID, tutorID, studentName, studentEmail, tutorNumber, tutorEmail, tutor, role, requestType, description, budget, amount, validUntil, school) {
         try {
             // Create a new accepted request
             const newAcceptedRequest = new acceptedTutorialRequestModel({
@@ -24,6 +24,7 @@ class TutorialRequestServices {
                 studentName,
                 studentEmail,
                 tutorNumber,
+                tutorEmail,
                 tutor,
                 role,
                 requestType,
