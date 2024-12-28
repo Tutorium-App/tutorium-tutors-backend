@@ -21,18 +21,6 @@ class HomeScreenServices {
             });
             await newVideo.save();
     
-            // Increment numberOfVideos for the tutor
-            // const tutor = await tutorModel.findOneAndUpdate(
-            //     { tutorID: tutorID }, // Update the filter to use tutorID
-            //     { $inc: { numberOfVideos: 1 } },
-            //     { new: true }
-            // );
-    
-            // if (!tutor) {
-            //     console.error('Tutor not found for updating video count');
-            //     return null;
-            // } //todo: this commented code goes to the admin dashboard. It's for when a tutorial service is approved for a tutor
-    
             // message to admin
             const adminMessage = `
             Dear Tutorium Admin,
@@ -52,7 +40,7 @@ class HomeScreenServices {
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
             const adminSubject = `New Tutorial Video Created`;
-            const adminEmail = "buabassahlawson01@gmail.com"; //todo: admin email goes here
+            const adminEmail = "tutorium.customer@gmail.com";
             const adminName = "Tutorium Admin"
 
             // Attempt to send the email
@@ -76,19 +64,7 @@ class HomeScreenServices {
                 tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 0, sales: 0, tutorialType: "service"
             });
             await newService.save();
-    
-            // Increment numberOfServices for the tutor
-            // const tutor = await tutorModel.findOneAndUpdate(
-            //     { tutorID: tutorID }, // Update the filter to use tutorID
-            //     { $inc: { numberOfServices: 1 } },
-            //     { new: true }
-            // );
-    
-            // if (!tutor) {
-            //     console.error('Tutor not found for updating service count');
-            //     return null;
-            // } //todo: this commented code goes to the admin dashboard. It's for when a tutorial service is approved for a tutor
-    
+
             // message to admin
             const adminMessage = `
             Dear Tutorium Admin,
@@ -107,7 +83,7 @@ class HomeScreenServices {
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
             const adminSubject = `New Tutorial Service Created`;
-            const adminEmail = "buabassahlawson01@gmail.com"; //todo: admin email goes here
+            const adminEmail = "tutorium.customer@gmail.com";
             const adminName = "Tutorium Admin"
 
             // Attempt to send the email
