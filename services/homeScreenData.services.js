@@ -60,6 +60,7 @@ class HomeScreenServices {
 
     static async uploadTutorialService(tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink) {
         try {
+            
             const newService = new newTutorialService({
                 tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 0, sales: 0, tutorialType: "service"
             });
@@ -94,7 +95,7 @@ class HomeScreenServices {
                 return sendErrorResponse(res, 500, 'Error sending email');
             }
 
-            return newService;
+            return newService; 
         } catch (error) {
             console.error('Error uploading tutorial service:', error);
             return null;

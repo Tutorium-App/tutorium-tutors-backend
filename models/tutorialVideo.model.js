@@ -15,6 +15,9 @@ const tutorialVideoSchema = new Schema({
     tutorNumber: {
         type: String,
     },
+    tutorialType: {
+        type: String,
+    },
     title: {
         type: String,
     },

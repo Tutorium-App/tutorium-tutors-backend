@@ -15,6 +15,9 @@ const tutorialServiceSchema = new Schema({
     tutorNumber: {
         type: String,
     },
+    tutorialType: {
+        type: String,
+    },
     title: {
         type: String,
     },
