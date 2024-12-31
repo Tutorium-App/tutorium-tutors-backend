@@ -141,7 +141,7 @@ class ManageTutorialServices {
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const adminSubject = `Tutorial Cancelled By Tutor`;
-                const adminEmail = "buabassahlawson01@gmail.com"; //todo: admin email goes here
+                const adminEmail = "tutorium.customer@gmail.com"; //todo: admin email goes here
                 const adminName = "Tutorium Admin"
 
                 // Attempt to send the email

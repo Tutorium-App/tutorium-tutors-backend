@@ -45,6 +45,10 @@ const tutorialServiceSchema = new Schema({
     sales: {
         type: Number,
     },
+    verified: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const tutorialServiceModel = db.model('TutorialServices', tutorialServiceSchema);

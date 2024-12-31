@@ -48,6 +48,10 @@ const tutorialVideoSchema = new Schema({
     sales: {
         type: Number,
     },
+    verified: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const tutorialVideoModel = db.model('TutorialVideos', tutorialVideoSchema);

@@ -1,6 +1,6 @@
 const tutorModel = require('../models/tutor.model');
-const newTutorialVideo = require('../models/newTutorialVideo.model');
-const newTutorialService = require('../models/newTutorialService.model');
+const newTutorialVideo = require('../models/tutorialVideo.model');
+const newTutorialService = require('../models/tutorialService.model');
 const EmailServices = require('../services/email.services');
 
 class HomeScreenServices {
@@ -19,7 +19,7 @@ class HomeScreenServices {
             const newVideo = new newTutorialVideo({
                 tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, videoLink, rating: 0, sales: 0, tutorialType: "video"
             });
-            await newVideo.save();
+            const savedVideo = await newVideo.save();
     
             // message to admin
             const adminMessage = `
@@ -51,7 +51,8 @@ class HomeScreenServices {
                 return sendErrorResponse(res, 500, 'Error sending email');
             }
 
-            return newVideo;
+            const { verified, ...video } = savedVideo.toObject();
+            return video;
         } catch (error) {
             console.error('Error uploading tutorial video:', error);
             return null;
@@ -64,7 +65,7 @@ class HomeScreenServices {
             const newService = new newTutorialService({
                 tutorID, tutorName, tutorEmail, tutorNumber, title, category, description, dateCreated, school, cost, thumbnailLink, rating: 0, sales: 0, tutorialType: "service"
             });
-            await newService.save();
+            const savedService = await newService.save();
 
             // message to admin
             const adminMessage = `
@@ -95,7 +96,8 @@ class HomeScreenServices {
                 return sendErrorResponse(res, 500, 'Error sending email');
             }
 
-            return newService; 
+            const { verified, ...service } = savedService.toObject();
+            return service; 
         } catch (error) {
             console.error('Error uploading tutorial service:', error);
             return null;
