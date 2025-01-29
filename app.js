@@ -10,6 +10,7 @@ const requestRouter = require('./routes/tutorialRequests.route');
 const otpRouter = require('./routes/otp.route');
 const rankRouter = require('./routes/rank.route');
 const appDataRouter = require('./routes/appData.route');
+const messageRouter = require('./routes/message.route');
  
 
 const app = express(); 
@@ -26,6 +27,7 @@ app.use('/requests/', requestRouter);
 app.use('/otp/', otpRouter);
 app.use('/rank/', rankRouter);
 app.use('/appData/', appDataRouter);
+app.use('/message/', messageRouter);
 
 
 module.exports = app;
