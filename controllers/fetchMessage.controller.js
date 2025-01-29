@@ -1,4 +1,4 @@
-const messageModel = require('../models/message.model');
+const messageModel = require('../models/message.models');
 
 const fetchMessage = async (req, res) => {
     const { messageID } = req.params;
