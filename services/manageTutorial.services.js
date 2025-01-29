@@ -1,7 +1,7 @@
 const TutorialService = require('../models/tutorialService.model');
 const TutorialVideo = require('../models/tutorialVideo.model');
 const PendingTutorial = require('../models/pendingTutorials.model');
-const EmailServices = require('../services/email.services');
+const SMSServices = require('../services/sms.services');
 const tutorModel = require('../models/tutor.model');
 
 class ManageTutorialServices {
@@ -114,10 +114,14 @@ class ManageTutorialServices {
                 The Tutorium Team \n
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-                const subject = "Cancellation of Tutorial Service";
-                let emailStatus = await EmailServices.sendEmail(studentEmail, studentName, subject, message);
-                if (!emailStatus) {
-                    console.error('Error sending cancellation email');
+                const SMS = await saveMessage(message);
+                // Send SMS to admin
+                const smsMessage = `Hi student, your tutor cancelled their tutorial service. View details here: ${SMS}`;
+                let requestRefundSMS = await SMSServices.sendSMS(studentNumber, smsMessage);
+
+                // Handle sms send failure
+                if (!requestRefundSMS) {
+                    return sendErrorResponse(res, 500, 'Error sending SMS');
                 }
 
                 // message to admin
@@ -140,16 +144,14 @@ class ManageTutorialServices {
                 The Tutorium Team \n
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-                const adminSubject = `Tutorial Cancelled By Tutor`;
-                const adminEmail = "tutorium.customer@gmail.com"; //todo: admin email goes here
-                const adminName = "Tutorium Admin"
+                const SMS1 = await saveMessage(adminMessage);
+                // Send SMS to admin
+                const smsMessage1 = `Hi admin, review this tutorial cancel request: ${SMS1}`;
+                let requestRefundSMS1 = await SMSServices.sendSMS("0256772900", smsMessage1);
 
-                // Attempt to send the email
-                let requestRefundMail = await EmailServices.sendEmail(adminEmail, adminName, adminSubject, adminMessage);
-
-                // Handle email send failure
-                if (!requestRefundMail) {
-                    return sendErrorResponse(res, 500, 'Error sending email');
+                // Handle sms send failure
+                if (!requestRefundSMS1) {
+                    return sendErrorResponse(res, 500, 'Error sending SMS');
                 }
 
                 return result;

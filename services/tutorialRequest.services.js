@@ -48,14 +48,17 @@ class TutorialRequestServices {
                 Warm regards,
                 The Tutorium Team \n
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
-                const subject = "Your Tutorial Request has been Accepted!";
 
-                // Assuming sendEmail is a function within your EmailServices class
-                let emailStatus = await EmailServices.sendEmail(studentEmail, subject, message);
+                const student = await studentModel.findOne({ studentID: studentID });
 
-                if (!emailStatus) {
-                    console.error('Error sending confirmation email');
-                    return null; // Adjust handling based on your error strategy
+                const SMS = await saveMessage(message);
+                // Send SMS to admin
+                const smsMessage = `Hi student, a tutor accepted your service request. View details here: ${SMS}`;
+                let requestRefundSMS = await SMSServices.sendSMS(student.phone, smsMessage);
+
+                // Handle sms send failure
+                if (!requestRefundSMS) {
+                    return sendErrorResponse(res, 500, 'Error sending SMS');
                 }
             }
 

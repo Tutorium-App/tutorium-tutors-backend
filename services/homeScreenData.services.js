@@ -2,6 +2,7 @@ const tutorModel = require('../models/tutor.model');
 const newTutorialVideo = require('../models/tutorialVideo.model');
 const newTutorialService = require('../models/tutorialService.model');
 const EmailServices = require('../services/email.services');
+const SMSServices = require('../services/sms.services');
 
 class HomeScreenServices {
     static async fetchHomeScreenData(tutorID) {
@@ -22,7 +23,7 @@ class HomeScreenServices {
             const savedVideo = await newVideo.save();
     
             // message to admin
-            const adminMessage = `
+            const message = `
             Dear Tutorium Admin,
             A tutor just created a new tutorial video. Review it for approval. Below are the details:\n
             Tutorial Title: ${title}
@@ -39,16 +40,14 @@ class HomeScreenServices {
             The Tutorium Team \n
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-            const adminSubject = `New Tutorial Video Created`;
-            const adminEmail = "tutorium.customer@gmail.com";
-            const adminName = "Tutorium Admin"
+            const SMS = await saveMessage(message);
+            // Send SMS to admin
+            const smsMessage = `Hi admin, review this tutorial video: ${SMS}`;
+            let requestRefundSMS = await SMSServices.sendSMS("0256772900", smsMessage);
 
-            // Attempt to send the email
-            let sendEMail = await EmailServices.sendEmail(adminEmail, adminName, adminSubject, adminMessage);
-
-            // Handle email send failure
-            if (!sendEMail) {
-                return sendErrorResponse(res, 500, 'Error sending email');
+            // Handle sms send failure
+            if (!requestRefundSMS) {
+                return sendErrorResponse(res, 500, 'Error sending SMS');
             }
 
             const { verified, ...video } = savedVideo.toObject();
@@ -84,16 +83,14 @@ class HomeScreenServices {
             The Tutorium Team \n
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-            const adminSubject = `New Tutorial Service Created`;
-            const adminEmail = "tutorium.customer@gmail.com";
-            const adminName = "Tutorium Admin"
+            const SMS = await saveMessage(message);
+            // Send SMS to admin
+            const smsMessage = `Hi admin, review this tutorial service: ${SMS}`;
+            let requestRefundSMS = await SMSServices.sendSMS("0256772900", smsMessage);
 
-            // Attempt to send the email
-            let sendEMail = await EmailServices.sendEmail(adminEmail, adminName, adminSubject, adminMessage);
-
-            // Handle email send failure
-            if (!sendEMail) {
-                return sendErrorResponse(res, 500, 'Error sending email');
+            // Handle sms send failure
+            if (!requestRefundSMS) {
+                return sendErrorResponse(res, 500, 'Error sending SMS');
             }
 
             const { verified, ...service } = savedService.toObject();
