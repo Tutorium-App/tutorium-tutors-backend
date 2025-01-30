@@ -19,10 +19,13 @@ const app = express();
 const corsOptions = {
     origin: 'https://www.tutoriumonline.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 };
 
 app.use(cors(corsOptions)); 
+// Handle Preflight Requests Manually
+app.options('*', cors(corsOptions)); 
 
 app.use(bodyParser.json());
 
