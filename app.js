@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');  // Import CORS
 const authenticationRouter = require('./routes/authentication.route');
 const homeScreenDataRouter = require('./routes/homeScreenData.route');
 const manageTutorialRouter = require('./routes/manageTutorials.route');
@@ -11,9 +12,17 @@ const otpRouter = require('./routes/otp.route');
 const rankRouter = require('./routes/rank.route');
 const appDataRouter = require('./routes/appData.route');
 const messageRouter = require('./routes/message.route');
- 
 
 const app = express(); 
+
+// Enable CORS with specific origin
+const corsOptions = {
+    origin: 'https://www.tutoriumonline.com/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions)); // Use the CORS middleware
 
 app.use(bodyParser.json());
 
@@ -29,6 +38,4 @@ app.use('/rank/', rankRouter);
 app.use('/appData/', appDataRouter);
 app.use('/message/', messageRouter);
 
-
 module.exports = app;
-
