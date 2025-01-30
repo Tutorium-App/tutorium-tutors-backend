@@ -1,9 +1,9 @@
 const messageModel = require('../models/message.models');
 
-const fetchMessage = async (req, res) => {
-    const { messageID } = req.params;
+exports.fetchMessage = async (req, res) => {
 
     try {
+        const { messageID } = req.params;
         const message = await messageModel.findOne({ messageID });
 
         if (!message) {
@@ -15,5 +15,3 @@ const fetchMessage = async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching the message' });
     }
 };
-
-module.exports = fetchMessage;
