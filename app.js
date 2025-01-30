@@ -17,7 +17,7 @@ const app = express();
 
 // Enable CORS with specific origin
 const corsOptions = {
-    origin: 'https://www.tutoriumonline.com/',
+    origin: 'https://www.tutoriumonline.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 };
