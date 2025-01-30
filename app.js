@@ -19,10 +19,10 @@ const app = express();
 const corsOptions = {
     origin: 'https://www.tutoriumonline.com/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 };
 
-app.use(cors(corsOptions)); // Use the CORS middleware
+app.use(cors(corsOptions)); 
 
 app.use(bodyParser.json());
 
