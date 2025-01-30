@@ -4,7 +4,7 @@ exports.fetchMessage = async (req, res) => {
 
     try {
         const { messageID } = req.params;
-        const message = await messageModel.findOne({ messageID });
+        const message = await messageModel.findOne({ messageID: messageID });
 
         if (!message) {
             return res.status(404).json({ error: 'Message not found' });
