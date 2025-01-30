@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');  // Import CORS
+const helmet = require('helmet');
 const authenticationRouter = require('./routes/authentication.route');
 const homeScreenDataRouter = require('./routes/homeScreenData.route');
 const manageTutorialRouter = require('./routes/manageTutorials.route');
@@ -15,11 +16,13 @@ const messageRouter = require('./routes/message.route');
 
 const app = express(); 
 
+// Set security headers
+app.use(helmet());
+
 // Enable CORS with specific origin
 const corsOptions = {
-    origin: 'https://www.tutoriumonline.com',
+    origin: ['https://www.tutoriumonline.com', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 };
 
