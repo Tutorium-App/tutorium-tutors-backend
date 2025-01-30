@@ -4,6 +4,6 @@ const messageController = require('../controllers/fetchMessage.controller');
 
 
 //fetch message
-router.post('/fetchMessage', messageController.fetchMessage);
+router.get('/fetchMessage', messageController.fetchMessage);
  
 module.exports = router;
