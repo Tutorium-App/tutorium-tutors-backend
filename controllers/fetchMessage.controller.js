@@ -3,9 +3,7 @@ const messageModel = require('../models/message.models');
 exports.fetchMessage = async (req, res) => {
 
     try {
-        console.log("Full req.query:", req.query);
         const { messageID } = req.query;
-        console.log("Extracted messageID:", messageID); 
         const message = await messageModel.findOne({ messageID: messageID });
 
         if (!message) {
