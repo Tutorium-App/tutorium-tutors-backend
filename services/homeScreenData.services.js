@@ -23,9 +23,11 @@ class HomeScreenServices {
             const savedVideo = await newVideo.save();
     
             // message to admin
-            const message = `
-            Dear Tutorium Admin,
-            A tutor just created a new tutorial video. Review it for approval. Below are the details:\n
+            const message = 
+            `Dear Tutorium Admin,
+
+            A tutor just created a new tutorial video. Review it for approval. Below are the details:
+
             Tutorial Title: ${title}
             Category: ${category}
             Cost: ${cost}
@@ -35,9 +37,11 @@ class HomeScreenServices {
             Date Created: ${dateCreated}
             Name: ${tutorName}
             Email: ${tutorEmail}
-            Number: ${tutorNumber}\n
+            Number: ${tutorNumber}
+
             Best regards,
-            The Tutorium Team \n
+            The Tutorium Team
+
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
             const SMS = await saveMessage(message);
@@ -67,9 +71,11 @@ class HomeScreenServices {
             const savedService = await newService.save();
 
             // message to admin
-            const adminMessage = `
-            Dear Tutorium Admin,
-            A tutor just created a new tutorial service. Review it for approval. Below are the details:\n
+            const adminMessage = 
+            `Dear Tutorium Admin,
+
+            A tutor just created a new tutorial service. Review it for approval. Below are the details:
+
             Tutorial Title: ${title}
             Category: ${category}
             Cost: ${cost}
@@ -78,9 +84,11 @@ class HomeScreenServices {
             Date Created: ${dateCreated}
             Name: ${tutorName}
             Email: ${tutorEmail}
-            Number: ${tutorNumber}\n
+            Number: ${tutorNumber}
+
             Best regards,
-            The Tutorium Team \n
+            The Tutorium Team 
+            
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
             const SMS = await saveMessage(message);

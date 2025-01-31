@@ -40,13 +40,16 @@ class TutorialRequestServices {
 
             // Send student email if tutorial request is accepted
             if (newAcceptedRequest) {
-                const message = `Dear ${studentName},\n
+                const message = `Dear ${studentName},
+
                 Good news! ${tutor} has just accepted your request and is eager to help you with the role: "${role}".
                 You can review this tutor's profile and book their services on our app. 
                 If you have any questions or need further assistance in making your choice, please don't hesitate to reach out. We are here to support you every step of the way.
-                Thank you for using Tutorium. We are thrilled to be a part of your educational journey!\n
+                Thank you for using Tutorium. We are thrilled to be a part of your educational journey!
+
                 Warm regards,
-                The Tutorium Team \n
+                The Tutorium Team 
+                
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const student = await studentModel.findOne({ studentID: studentID });

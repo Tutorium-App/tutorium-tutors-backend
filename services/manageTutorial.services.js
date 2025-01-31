@@ -106,12 +106,16 @@ class ManageTutorialServices {
                 tutor.balance -= amount;
                 await tutor.save();
 
-                const message = `Dear ${studentName},\n
+                const message = 
+                `Dear ${studentName},
+
                 We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.
                 You can revisit our platform for a suitable alternative. Our team is committed to providing you with the best learning experience and support throughout your journey with us.
-                Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.\n
+                Thank you for your understanding and patience. If you have any questions or require further assistance, please do not hesitate to reach out. We value your choice to learn with Tutorium and look forward to continuing to serve your educational needs.
+
                 Warm regards,
-                The Tutorium Team \n
+                The Tutorium Team 
+
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const SMS = await saveMessage(message);
@@ -125,9 +129,10 @@ class ManageTutorialServices {
                 }
 
                 // message to admin
-                const adminMessage = `
-                Dear Tutorium Admin,
-                A pending tutorial service has been cancelled. Below are the necessary details:\n
+                const adminMessage = 
+               `Dear Tutorium Admin,
+                A pending tutorial service has been cancelled. Below are the necessary details:
+
                 Tutorial Title: ${tutorialTitle}
                 Tutorial ID: ${tutorialID}
                 Cost: ${amount}
@@ -138,10 +143,13 @@ class ManageTutorialServices {
                 Tutor Details:
                 Name: ${tutorName}
                 Email: ${tutorEmail}
-                Number: ${tutorNumber}\n
-                Please review this and refund the students amount paid.\n
+                Number: ${tutorNumber}
+
+                Please review this and refund the students amount paid.
+
                 Best regards,
-                The Tutorium Team \n
+                The Tutorium Team 
+                
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const SMS1 = await saveMessage(adminMessage);
