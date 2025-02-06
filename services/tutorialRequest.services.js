@@ -55,6 +55,7 @@ class TutorialRequestServices {
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
                 const student = await studentModel.findOne({ studentID: studentID });
+                console.log(student);
 
                 const SMS = await saveMessage(message);
                 // Send SMS to admin
