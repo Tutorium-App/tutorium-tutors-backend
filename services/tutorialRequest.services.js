@@ -1,6 +1,7 @@
 const tutorialRequestModel = require('../models/tutorialRequest.model');
 const acceptedTutorialRequestModel = require('../models/acceptedRequests.model');
 const saveMessage = require('../utils/saveMessage');
+const studentModel = require('../models/tutor.model');
 
 class TutorialRequestServices {
     // Fetch all tutorial requests by school
