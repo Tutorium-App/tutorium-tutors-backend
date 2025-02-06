@@ -107,7 +107,7 @@ class ManageTutorialServices {
                 tutor.balance -= amount;
                 await tutor.save();
 
-                const message = 
+                let message = 
                 `Dear ${studentName},
 
                 We regret to inform you that your upcoming tutorial session titled "${tutorialTitle}" has been cancelled. We understand the inconvenience this may cause and want to assure you that any amount paid for this service will be fully refunded to your original payment method within the next 2-3 business days.
@@ -121,7 +121,7 @@ class ManageTutorialServices {
 
                 const SMS = await saveMessage(message);
                 // Send SMS to admin
-                const smsMessage = `Hi student, your tutor cancelled their tutorial service. View details here: ${SMS}`;
+                let smsMessage = `Hi student, your tutor cancelled their tutorial service. View details here: ${SMS}`;
                 let requestRefundSMS = await SMSServices.sendSMS(studentNumber, smsMessage);
 
                 // Handle sms send failure
@@ -130,7 +130,7 @@ class ManageTutorialServices {
                 }
 
                 // message to admin
-                const adminMessage = 
+                let adminMessage = 
                `Dear Tutorium Admin,
                 A pending tutorial service has been cancelled. Below are the necessary details:
 
@@ -155,7 +155,7 @@ class ManageTutorialServices {
 
                 const SMS1 = await saveMessage(adminMessage);
                 // Send SMS to admin
-                const smsMessage1 = `Hi admin, review this tutorial cancel request: ${SMS1}`;
+                let smsMessage1 = `Hi admin, review this tutorial cancel request: ${SMS1}`;
                 let requestRefundSMS1 = await SMSServices.sendSMS("0256772900", smsMessage1);
 
                 // Handle sms send failure

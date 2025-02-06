@@ -16,7 +16,7 @@ exports.storeTutorData = async (req, res, next) => {
         }
 
         // Define the congratulations email content
-        const message = `Dear ${fullName},\n
+        let message = `Dear ${fullName},\n
         Congratulations on joining Tutorium! We're thrilled to have you aboard our community of passionate and dedicated tutors. At Tutorium, we believe in the power of education and the difference it can make in a student's life. As a tutor on our platform, you'll have the opportunity to share your knowledge, connect with fellow students, and earn money while you do it.
         We're committed to providing you with all the support you need to succeed. We look forward to seeing the impact you'll make. If you have any questions or need assistance, feel free to reach out to our support team.
         Welcome to Tutorium, where learning meets passion and opportunity.\n

@@ -40,7 +40,7 @@ class TutorialRequestServices {
 
             // Send student email if tutorial request is accepted
             if (newAcceptedRequest) {
-                const message = `Dear ${studentName},
+                let message = `Dear ${studentName},
 
                 Good news! ${tutor} has just accepted your request and is eager to help you with the role: "${role}".
                 You can review this tutor's profile and book their services on our app. 
@@ -56,7 +56,7 @@ class TutorialRequestServices {
 
                 const SMS = await saveMessage(message);
                 // Send SMS to admin
-                const smsMessage = `Hi student, a tutor accepted your service request. View details here: ${SMS}`;
+                let smsMessage = `Hi student, a tutor accepted your service request. View details here: ${SMS}`;
                 let requestRefundSMS = await SMSServices.sendSMS(student.phone, smsMessage);
 
                 // Handle sms send failure

@@ -23,7 +23,7 @@ class HomeScreenServices {
             const savedVideo = await newVideo.save();
     
             // message to admin
-            const message = 
+            let message = 
             `Dear Tutorium Admin,
 
             A tutor just created a new tutorial video. Review it for approval. Below are the details:
@@ -71,7 +71,7 @@ class HomeScreenServices {
             const savedService = await newService.save();
 
             // message to admin
-            const adminMessage = 
+            let adminMessage = 
             `Dear Tutorium Admin,
 
             A tutor just created a new tutorial service. Review it for approval. Below are the details:
@@ -91,7 +91,7 @@ class HomeScreenServices {
             
             [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-            const SMS = await saveMessage(message);
+            const SMS = await saveMessage(adminMessage);
             // Send SMS to admin
             const smsMessage = `Hi admin, review this tutorial service: ${SMS}`;
             let requestRefundSMS = await SMSServices.sendSMS("0256772900", smsMessage);
