@@ -4,6 +4,7 @@ const PendingTutorial = require('../models/pendingTutorials.model');
 const SMSServices = require('../services/sms.services');
 const tutorModel = require('../models/tutor.model');
 const saveMessage = require('../utils/saveMessage');
+const { sendErrorResponse } = require('../utils/errorHandler');
 
 class ManageTutorialServices {
     // Fetch all tutorial services for a specific tutor

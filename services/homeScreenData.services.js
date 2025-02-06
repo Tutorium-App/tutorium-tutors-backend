@@ -3,6 +3,7 @@ const newTutorialVideo = require('../models/tutorialVideo.model');
 const newTutorialService = require('../models/tutorialService.model');
 const saveMessage = require('../utils/saveMessage');
 const SMSServices = require('../services/sms.services');
+const { sendErrorResponse } = require('../utils/errorHandler');
 
 class HomeScreenServices {
     static async fetchHomeScreenData(tutorID) {
