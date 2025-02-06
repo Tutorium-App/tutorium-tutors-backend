@@ -2,7 +2,7 @@ const tutorialRequestModel = require('../models/tutorialRequest.model');
 const acceptedTutorialRequestModel = require('../models/acceptedRequests.model');
 const SMSServices = require('../services/sms.services');
 const saveMessage = require('../utils/saveMessage');
-const studentModel = require('../models/tutor.model');
+const studentModel = require('../models/student.model');
 
 class TutorialRequestServices {
     // Fetch all tutorial requests by school
@@ -54,9 +54,7 @@ class TutorialRequestServices {
                 
                 [Customer service email: tutorium.customer@gmail.com. Email us here.]`;
 
-                console.log(studentID);
                 const student = await studentModel.findOne({ studentID: studentID });
-                console.log(student);
 
                 const SMS = await saveMessage(message);
                 // Send SMS to admin
