@@ -1,7 +1,7 @@
 const tutorModel = require('../models/tutor.model');
 const newTutorialVideo = require('../models/tutorialVideo.model');
 const newTutorialService = require('../models/tutorialService.model');
-const EmailServices = require('../services/email.services');
+const saveMessage = require('../utils/saveMessage');
 const SMSServices = require('../services/sms.services');
 
 class HomeScreenServices {
