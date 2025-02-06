@@ -3,7 +3,6 @@ const newTutorialVideo = require('../models/tutorialVideo.model');
 const newTutorialService = require('../models/tutorialService.model');
 const saveMessage = require('../utils/saveMessage');
 const SMSServices = require('../services/sms.services');
-const { sendErrorResponse } = require('../utils/errorHandler');
 
 class HomeScreenServices {
     static async fetchHomeScreenData(tutorID) {
@@ -52,7 +51,7 @@ class HomeScreenServices {
 
             // Handle sms send failure
             if (!requestRefundSMS) {
-                return sendErrorResponse(res, 500, 'Error sending SMS');
+                console.log('Error sending SMS');
             }
 
             const { verified, ...video } = savedVideo.toObject();
@@ -99,7 +98,7 @@ class HomeScreenServices {
 
             // Handle sms send failure
             if (!requestRefundSMS) {
-                return sendErrorResponse(res, 500, 'Error sending SMS');
+                console.log('Error sending SMS');
             }
 
             const { verified, ...service } = savedService.toObject();

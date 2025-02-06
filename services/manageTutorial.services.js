@@ -4,7 +4,6 @@ const PendingTutorial = require('../models/pendingTutorials.model');
 const SMSServices = require('../services/sms.services');
 const tutorModel = require('../models/tutor.model');
 const saveMessage = require('../utils/saveMessage');
-const { sendErrorResponse } = require('../utils/errorHandler');
 
 class ManageTutorialServices {
     // Fetch all tutorial services for a specific tutor
@@ -127,7 +126,7 @@ class ManageTutorialServices {
 
                 // Handle sms send failure
                 if (!requestRefundSMS) {
-                    return sendErrorResponse(res, 500, 'Error sending SMS');
+                    console.log('Error sending SMS');
                 }
 
                 // message to admin
@@ -161,7 +160,7 @@ class ManageTutorialServices {
 
                 // Handle sms send failure
                 if (!requestRefundSMS1) {
-                    return sendErrorResponse(res, 500, 'Error sending SMS');
+                     console.log('Error sending SMS');
                 }
 
                 return result;

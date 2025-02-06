@@ -1,7 +1,6 @@
 const tutorialRequestModel = require('../models/tutorialRequest.model');
 const acceptedTutorialRequestModel = require('../models/acceptedRequests.model');
 const saveMessage = require('../utils/saveMessage');
-const { sendErrorResponse } = require('../utils/errorHandler');
 
 class TutorialRequestServices {
     // Fetch all tutorial requests by school
@@ -62,7 +61,7 @@ class TutorialRequestServices {
 
                 // Handle sms send failure
                 if (!requestRefundSMS) {
-                    return sendErrorResponse(res, 500, 'Error sending SMS');
+                    console.log('Error sending SMS');
                 }
             }
 
